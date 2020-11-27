@@ -202,8 +202,8 @@ if __name__ == "__main__":
     APP.setQuitOnLastWindowClosed(False)
     APP.setAttribute(Qt.AA_EnableHighDpiScaling)
     QFontDatabase.addApplicationFont(
-        resource_path('data/fonts/NotoSans-Regular.ttf'))
+        resource_path(HOME_DIR + '/nparse/data/fonts/NotoSans-Regular.ttf'))
     QFontDatabase.addApplicationFont(
-        resource_path('data/fonts/NotoSans-Bold.ttf'))
+        resource_path(HOME_DIR + '/nparse/data/fonts/NotoSans-Bold.ttf'))
 
     sys.exit(APP.exec())

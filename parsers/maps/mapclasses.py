@@ -1,4 +1,5 @@
 import datetime
+import os
 
 from PyQt5.QtCore import Qt, QTimer, QPointF
 from PyQt5.QtGui import QPixmap, QPen
@@ -6,6 +7,8 @@ from PyQt5.QtWidgets import (QGraphicsItemGroup, QGraphicsLineItem,
                              QGraphicsPixmapItem, QGraphicsTextItem)
 
 from helpers import format_time, get_degrees_from_line, to_eq_xy, to_real_xy
+
+HOME_DIR = os.getenv("HOME")
 
 
 class MouseLocation(QGraphicsTextItem):
@@ -72,11 +75,11 @@ class Player(QGraphicsItemGroup):
         self.timestamp = None  # datetime
         self.__dict__.update(kwargs)
         self.icon = QGraphicsPixmapItem(
-            QPixmap('data/maps/user.png')
+            QPixmap(HOME_DIR + '/nparse/data/maps/user.png')
         )
         self.icon.setOffset(-10, -10)
         self.directional = QGraphicsPixmapItem(
-            QPixmap('data/maps/directional.png')
+            QPixmap(HOME_DIR + '/nparse/data/maps/directional.png')
         )
         self.directional.setOffset(-15, -15)
         self.directional.setVisible(False)
@@ -109,7 +112,7 @@ class SpawnPoint(QGraphicsItemGroup):
         self.__dict__.update(**kwargs)
         self.setToolTip(self.name)
 
-        pixmap = QGraphicsPixmapItem(QPixmap('data/maps/spawn.png'))
+        pixmap = QGraphicsPixmapItem(QPixmap('HOME_DIR + /nparse/data/maps/spawn.png'))
         text = QGraphicsTextItem('0')
 
         self.addToGroup(pixmap)
@@ -183,7 +186,7 @@ class WayPoint:
         self.location = MapPoint()
         self.__dict__.update(kwargs)
 
-        self.pixmap = QGraphicsPixmapItem(QPixmap('data/maps/waypoint.png'))
+        self.pixmap = QGraphicsPixmapItem(QPixmap('HOME_DIR + /nparse/data/maps/waypoint.png'))
         self.pixmap.setOffset(-10, -20)
 
         self.line = QGraphicsLineItem(
