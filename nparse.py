@@ -25,6 +25,8 @@ if config.data['general']['update_check']:
     ONLINE_VERSION = get_version()
 else:
     ONLINE_VERSION = CURRENT_VERSION
+    
+HOME_DIR = os.getenv("HOME")
 
 
 class NomnsParse(QApplication):
@@ -44,7 +46,7 @@ class NomnsParse(QApplication):
 
         # Tray Icon
         self._system_tray = QSystemTrayIcon()
-        self._system_tray.setIcon(QIcon(resource_path('data/ui/icon.png')))
+        self._system_tray.setIcon(QIcon(resource_path(HOME_DIR + '/nparse/data/ui/icon.png')))
         self._system_tray.setToolTip("nParse")
         # self._system_tray.setContextMenu(self._create_menu())
         self._system_tray.activated.connect(self._menu)
@@ -195,8 +197,8 @@ if __name__ == "__main__":
         pass
 
     APP = NomnsParse(sys.argv)
-    APP.setStyleSheet(open(resource_path('data/ui/_.css')).read())
-    APP.setWindowIcon(QIcon(resource_path('data/ui/icon.png')))
+    APP.setStyleSheet(open(resource_path(HOME_DIR + '/nparse/data/ui/_.css')).read())
+    APP.setWindowIcon(QIcon(resource_path(HOME_DIR + '/nparse/data/ui/icon.png')))
     APP.setQuitOnLastWindowClosed(False)
     APP.setAttribute(Qt.AA_EnableHighDpiScaling)
     QFontDatabase.addApplicationFont(

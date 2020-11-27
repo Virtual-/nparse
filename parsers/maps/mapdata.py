@@ -9,8 +9,9 @@ from helpers import config
 
 from .mapclasses import MapPoint, MapGeometry, MapLine, PointOfInterest
 
-MAP_KEY_FILE = 'data/maps/map_keys.ini'
-MAP_FILES_LOCATION = 'data/maps/map_files'
+HOME_DIR = os.getenv("HOME")
+MAP_KEY_FILE = HOME_DIR + '/nparse/data/maps/map_keys.ini'
+MAP_FILES_LOCATION = HOME_DIR + '/nparse/data/maps/map_files'
 
 
 class MapData(dict):

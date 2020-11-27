@@ -2,6 +2,7 @@ import datetime
 import math
 import string
 import re
+import os
 
 from PyQt5.QtCore import QEvent, QObject, QRect, Qt, QTimer, pyqtSignal
 from PyQt5.QtGui import QPixmap
@@ -9,6 +10,8 @@ from PyQt5.QtWidgets import (QFrame, QHBoxLayout, QLabel, QProgressBar,
                              QScrollArea, QSpinBox, QVBoxLayout, QPushButton)
 
 from helpers import ParserWindow, config, format_time, text_time_to_seconds
+
+HOME_DIR = os.getenv("HOME")
 
 
 class Spells(ParserWindow):
@@ -348,7 +351,7 @@ class SpellWidget(QFrame):
 def get_spell_icon(icon_index):
     # Spell Icons are 40x40 pixels
     file_number = math.ceil(icon_index / 36)
-    file_name = 'data/spells/spells0' + str(file_number) + '.png'
+    file_name = HOME_DIR + '/nparse/data/spells/spells0' + str(file_number) + '.png'
     spell_number = icon_index % 36
     file_row = math.floor((spell_number + 6) / 6)
     file_col = spell_number % 6 + 1
@@ -445,7 +448,7 @@ class SpellTrigger(QObject):
 def create_spell_book():
     """ Returns a dictionary of Spell by k, v -> spell_name, Spell() """
     spell_book = {}
-    with open('data/spells/spells_us.txt') as spell_file:
+    with open(HOME_DIR + '/nparse/data/spells/spells_us.txt') as spell_file:
         for line in spell_file:
             values = line.strip().split('^')
             spell_book[values[1]] = Spell(
